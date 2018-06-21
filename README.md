@@ -4,6 +4,8 @@ C# binding for [Menoh](https://github.com/pfnet-research/menoh/) DNN inference l
 
 This project is for 64 bit only.
 
+[Nuget](https://www.nuget.org/packages/MenohSharp/)
+
 # Requirements
 
 - [Menoh](https://github.com/pfnet-research/menoh/)
