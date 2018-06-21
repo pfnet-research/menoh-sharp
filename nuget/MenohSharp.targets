@@ -15,23 +15,5 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
 
-    <!-- macOS -->
-    <None Include="$(MSBuildThisFileDirectory)..\runtimes\osx-x64\native\libiomp5.dylib">
-      <Link>libiomp5.dylib</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)..\runtimes\osx-x64\native\libmenoh.dylib">
-      <Link>libmenoh.dylib</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)..\runtimes\osx-x64\native\libmkldnn.0.14.0.dylib">
-      <Link>libmkldnn.0.14.0.dylib</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="$(MSBuildThisFileDirectory)..\runtimes\osx-x64\native\libmklml.dylib">
-      <Link>libmklml.dylib</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-
   </ItemGroup>
 </Project>

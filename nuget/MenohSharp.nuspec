@@ -2,13 +2,16 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>MenohSharp</id>
-        <version>1.0</version>
+        <version>1.0.0.1</version>
         <title>MenohSharp</title>
         <authors>Preferred Networks</authors>
         <licenseUrl>https://github.com/pfnet-research/menoh-sharp/blob/master/LICENSE</licenseUrl>
         <projectUrl>https://github.com/pfnet-research/menoh-sharp</projectUrl>
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
-        <description>MenohSharp is a DNN inference library. (C# binding for Menoh)</description>
+        <description>
+MenohSharp is a DNN inference library (C# binding for Menoh).
+If it runs on MacOSX, you need install Menoh form source code.
+	</description>
         <summary>MenohSharp is a DNN inference library.</summary>
         <copyright>Copyright (c) 2018 Preferred Networks</copyright>
         <language>en</language>
@@ -23,11 +26,6 @@
         <file src="menoh.dll" target="runtimes\win-x64\native" />
         <file src="mkldnn.dll" target="runtimes\win-x64\native" />
         <file src="mklml.dll" target="runtimes\win-x64\native" />
-
-        <file src="libiomp5.dylib" target="runtimes\osx-x64\native" />
-        <file src="libmenoh.dylib" target="runtimes\osx-x64\native" />
-        <file src="libmkldnn.0.14.0.dylib" target="runtimes\osx-x64\native" />
-        <file src="libmklml.dylib" target="runtimes\osx-x64\native" />
 
     </files>
 </package>
