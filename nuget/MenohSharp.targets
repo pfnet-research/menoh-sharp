@@ -1,11 +1,37 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <NativeLibs Include="$(MSBuildThisFileDirectory)menoh.dll" />
-    <NativeLibs Include="$(MSBuildThisFileDirectory)mkldnn.dll" />
-    <NativeLibs Include="$(MSBuildThisFileDirectory)mklml.dll" />
-    <None Include="@(NativeLibs)">
-      <Link>%(FileName)%(Extension)</Link>
+
+    <!-- Windows -->
+    <None Include="$(MSBuildThisFileDirectory)..\runtimes\win-x64\native\menoh.dll">
+      <Link>menoh.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="$(MSBuildThisFileDirectory)..\runtimes\win-x64\native\mkldnn.dll">
+      <Link>mkldnn.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)..\runtimes\win-x64\native\mklml.dll">
+      <Link>mklml.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+
+    <!-- macOS -->
+    <None Include="$(MSBuildThisFileDirectory)..\runtimes\osx-x64\native\libiomp5.dylib">
+      <Link>libiomp5.dylib</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)..\runtimes\osx-x64\native\libmenoh.dylib">
+      <Link>libmenoh.dylib</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)..\runtimes\osx-x64\native\libmkldnn.0.14.0.dylib">
+      <Link>libmkldnn.0.14.0.dylib</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)..\runtimes\osx-x64\native\libmklml.dylib">
+      <Link>libmklml.dylib</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+
   </ItemGroup>
 </Project>

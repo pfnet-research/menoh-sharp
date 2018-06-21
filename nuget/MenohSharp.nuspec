@@ -15,13 +15,19 @@
         <tags>DeepLearning</tags>
     </metadata>
     <files>
-        <file src="MenohSharp.targets" target="build\net45\MenohSharp.targets" />
+        <file src="MenohSharp.targets" target="build\" />
 
-        <file src="Menoh.dll" target="lib\net45\Menoh.dll" />
-        <file src="Menoh.xml" target="lib\net45\Menoh.xml" />
+        <file src="MenohSharp.dll" target="lib\net45\" />
+        <file src="MenohSharp.xml" target="lib\net45\" />
 
-        <file src="menoh.dll" target="build\net45\menoh.dll" />
-        <file src="mkldnn.dll" target="build\net45\mkldnn.dll" />
-        <file src="mklml.dll" target="build\net45\mklml.dll" />
+        <file src="menoh.dll" target="runtimes\win-x64\native" />
+        <file src="mkldnn.dll" target="runtimes\win-x64\native" />
+        <file src="mklml.dll" target="runtimes\win-x64\native" />
+
+        <file src="libiomp5.dylib" target="runtimes\osx-x64\native" />
+        <file src="libmenoh.dylib" target="runtimes\osx-x64\native" />
+        <file src="libmkldnn.0.14.0.dylib" target="runtimes\osx-x64\native" />
+        <file src="libmklml.dylib" target="runtimes\osx-x64\native" />
+
     </files>
 </package>
