@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2015
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MenohSharp", "MenohSharp\MenohSharp.csproj", "{069D4399-055C-40E5-815D-03F10A20BC4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MenohSharpExample", "MenohSharpExample\MenohSharpExample.csproj", "{3A779110-5BA6-4A1F-B563-9C6EBE729F56}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{069D4399-055C-40E5-815D-03F10A20BC4E}.Debug|x64.ActiveCfg = Debug|x64
+		{069D4399-055C-40E5-815D-03F10A20BC4E}.Debug|x64.Build.0 = Debug|x64
+		{069D4399-055C-40E5-815D-03F10A20BC4E}.Release|x64.ActiveCfg = Release|x64
+		{069D4399-055C-40E5-815D-03F10A20BC4E}.Release|x64.Build.0 = Release|x64
+		{3A779110-5BA6-4A1F-B563-9C6EBE729F56}.Debug|x64.ActiveCfg = Debug|x64
+		{3A779110-5BA6-4A1F-B563-9C6EBE729F56}.Debug|x64.Build.0 = Debug|x64
+		{3A779110-5BA6-4A1F-B563-9C6EBE729F56}.Release|x64.ActiveCfg = Release|x64
+		{3A779110-5BA6-4A1F-B563-9C6EBE729F56}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A69E0573-B360-46F8-8891-736ECAA08F9B}
+	EndGlobalSection
+EndGlobal
