@@ -42,10 +42,20 @@ namespace MenohSharp
         }
     }
 
+    /// <summary>
+    /// model data class
+    /// </summary>
     public class ModelData : IDisposable
     {
         internal IntPtr handle = IntPtr.Zero;
 
+        /// <summary>
+        /// Optimize model_data.
+        /// </summary>
+        /// <param name="vpt"></param>
+        /// <remarks>
+        /// This function modify internal state of model_data.
+        /// </remarks>
         public void Optimize(VariableProfileTable vpt)
         {
             Utils.Check(DLL.menoh_model_data_optimize(handle, vpt.handle));
@@ -70,6 +80,11 @@ namespace MenohSharp
             }
         }
 
+        /// <summary>
+        /// Load ONNX file and make model_data
+        /// </summary>
+        /// <param name="onnx_model_path"></param>
+        /// <returns></returns>
         public static ModelData MakeModelDataFromONNX(string onnx_model_path)
         {
             IntPtr handle = IntPtr.Zero;
@@ -88,6 +103,9 @@ namespace MenohSharp
         public int[] Dims { get; internal set; }
     };
 
+    /// <summary>
+    /// Key value store for variable_profile
+    /// </summary>
     public class VariableProfileTable : IDisposable
     {
         internal IntPtr handle = IntPtr.Zero;
@@ -115,6 +133,11 @@ namespace MenohSharp
             }
         }
 
+        /// <summary>
+        /// Accessor to variable profile.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public VariableProfile GetVariableProfile(string name)
         {
             int dtype = 0;
@@ -141,6 +164,9 @@ namespace MenohSharp
         }
     }
 
+    /// <summary>
+    /// The builder class to build variable_profile_table
+    /// </summary>
     public class VariableProfileTableBuilder : IDisposable
     {
         internal IntPtr handle = IntPtr.Zero;
@@ -168,6 +194,12 @@ namespace MenohSharp
             }
         }
 
+        /// <summary>
+        /// Add input profile. That profile contains name, dtype and dims.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="dtype"></param>
+        /// <param name="dims"></param>
         public void AddInputProfile(string name, DType dtype, int[] dims)
         {
             if (dims.Length == 2)
@@ -184,11 +216,21 @@ namespace MenohSharp
             }
         }
 
+        /// <summary>
+        /// Add output profile. That profile contains name, dtype.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="dtype"></param>
         public void AddOutputProfile(string name, DType dtype)
         {
             Utils.Check(DLL.menoh_variable_profile_table_builder_add_output_profile(handle, name, dtype));
         }
 
+        /// <summary>
+        /// Factory function for variable_profile_table.
+        /// </summary>
+        /// <param name="model_data"></param>
+        /// <returns></returns>
         public VariableProfileTable BuildVariableProfileTable(ModelData model_data)
         {
             IntPtr handle = IntPtr.Zero;
@@ -201,6 +243,9 @@ namespace MenohSharp
         }
     }
 
+    /// <summary>
+    /// The builder class to build model.
+    /// </summary>
     public class ModelBuilder : IDisposable
     {
         IntPtr handle = IntPtr.Zero;
@@ -228,11 +273,26 @@ namespace MenohSharp
             }
         }
 
+        /// <summary>
+        /// Users can attach external buffers to variables.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="buffer_handle"></param>
+        /// <remarks>
+        /// Variables attached no external buffer are attached internal buffers allocated automatically.
+        /// </remarks>
         public void AttachExternalBuffer(string name, IntPtr buffer_handle)
         {
             Utils.Check(DLL.menoh_model_builder_attach_external_buffer(handle, name, buffer_handle));
         }
 
+        /// <summary>
+        /// Factory function for model
+        /// </summary>
+        /// <param name="model_data"></param>
+        /// <param name="backend_name"></param>
+        /// <param name="backend_config"></param>
+        /// <returns></returns>
         public Model BuildModel(ModelData model_data, string backend_name, string backend_config = "")
         {
             IntPtr handle = IntPtr.Zero;
@@ -252,6 +312,9 @@ namespace MenohSharp
         public IntPtr BufferHandle { get; internal set; }
     };
 
+    /// <summary>
+    /// The main component to run inference.
+    /// </summary>
     public class Model : IDisposable
     {
         internal IntPtr handle = IntPtr.Zero;
@@ -274,6 +337,11 @@ namespace MenohSharp
             }
         }
 
+        /// <summary>
+        /// Accsessor to internal variable.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public Variable GetVariable(string name)
         {
             int dtype = 0;
@@ -303,6 +371,9 @@ namespace MenohSharp
             return ret;
         }
 
+        /// <summary>
+        /// Run model inference.
+        /// </summary>
         public void Run()
         {
             Utils.Check(DLL.menoh_model_run(handle));
