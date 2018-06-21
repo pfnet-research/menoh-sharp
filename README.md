@@ -16,7 +16,11 @@ To execute an example, please put binaries in ./bin/
 
 Visual Studio 2015 or later
 
-## Mac, Linux (Experiment)
+## Mac
+
+mono or Visual Studio For Mac
+
+## Linux(Experiment)
 
 mono
 
@@ -32,7 +36,7 @@ retrieve_data.bat
 
 Open MenohSharp.sln and compile with Visual Studio 2015 or later.
 
-## Mac, Linux (Experiment)
+## Mac, Linux
 
 Execute below command in root directory.
 
@@ -47,7 +51,7 @@ xbuild MenohSharp/MenohSharp.csproj /t:build /p:Configuration=Release /p:Platfor
 
 Execute ./bin/MenohSharpExample.exe
 
-## Mac, Linux (Experiment)
+## Mac, Linux
 
 Execute below command in root directory.
 
@@ -57,7 +61,13 @@ cd menoh
 mono MenohSharpExample.exe
 ```
 
-Result is below
+If libgdiplus.dylib is not found on Mac, please execute below command (brew and cask are required)
+
+```
+brew cask install mono-mdk
+```
+
+ Result is below
 
 ```
 -22.45651 -34.58567 -10.29389 24.40432 -0.2879904 -7.913781...
