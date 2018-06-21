@@ -51,12 +51,22 @@ namespace MenohSharp
             Utils.Check(DLL.menoh_model_data_optimize(handle, vpt.handle));
         }
 
+        ~ModelData()
+        {
+            Dispose();
+        }
+
         public void Dispose()
         {
-            if (handle != IntPtr.Zero)
+            lock (this)
             {
-                DLL.menoh_delete_model_data(handle);
-                handle = IntPtr.Zero;
+                if (handle != IntPtr.Zero)
+                {
+                    DLL.menoh_delete_model_data(handle);
+                    handle = IntPtr.Zero;
+                }
+
+                System.GC.SuppressFinalize(this);
             }
         }
 
@@ -87,12 +97,21 @@ namespace MenohSharp
 
         }
 
+        ~VariableProfileTable()
+        {
+            Dispose();
+        }
+
         public void Dispose()
         {
-            if (handle != IntPtr.Zero)
+            lock (this)
             {
-                DLL.menoh_delete_variable_profile_table(handle);
-                handle = IntPtr.Zero;
+                if (handle != IntPtr.Zero)
+                {
+                    DLL.menoh_delete_variable_profile_table(handle);
+                    handle = IntPtr.Zero;
+                }
+                System.GC.SuppressFinalize(this);
             }
         }
 
@@ -131,12 +150,21 @@ namespace MenohSharp
             Utils.Check(DLL.menoh_make_variable_profile_table_builder(ref handle));
         }
 
+        ~VariableProfileTableBuilder()
+        {
+            Dispose();
+        }
+
         public void Dispose()
         {
-            if (handle != IntPtr.Zero)
+            lock (this)
             {
-                DLL.menoh_delete_variable_profile_table_builder(handle);
-                handle = IntPtr.Zero;
+                if (handle != IntPtr.Zero)
+                {
+                    DLL.menoh_delete_variable_profile_table_builder(handle);
+                    handle = IntPtr.Zero;
+                }
+                System.GC.SuppressFinalize(this);
             }
         }
 
@@ -181,12 +209,22 @@ namespace MenohSharp
             Utils.Check(DLL.menoh_make_model_builder(variable_profile_table.handle, ref handle));
         }
 
+        ~ModelBuilder()
+        {
+            Dispose();
+        }
+
         public void Dispose()
         {
-            if (handle != IntPtr.Zero)
+            lock (this)
             {
-                DLL.menoh_delete_model_builder(handle);
-                handle = IntPtr.Zero;
+                if (handle != IntPtr.Zero)
+                {
+                    DLL.menoh_delete_model_builder(handle);
+                    handle = IntPtr.Zero;
+                }
+
+                System.GC.SuppressFinalize(this);
             }
         }
 
@@ -218,12 +256,21 @@ namespace MenohSharp
     {
         internal IntPtr handle = IntPtr.Zero;
 
+        ~Model()
+        {
+            Dispose();
+        }
+
         public void Dispose()
         {
-            if (handle != IntPtr.Zero)
+            lock (this)
             {
-                DLL.menoh_delete_model(handle);
-                handle = IntPtr.Zero;
+                if (handle != IntPtr.Zero)
+                {
+                    DLL.menoh_delete_model(handle);
+                    handle = IntPtr.Zero;
+                }
+                System.GC.SuppressFinalize(this);
             }
         }
 
