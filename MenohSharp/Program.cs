@@ -349,7 +349,7 @@ namespace MenohSharp
             Utils.Check(DLL.menoh_model_get_variable_dtype(handle, name, ref dtype));
 
             int dims_size = 0;
-            Utils.Check(DLL.menoh_model_get_variable_dtype(handle, name, ref dims_size));
+            Utils.Check(DLL.menoh_model_get_variable_dims_size(handle, name, ref dims_size));
 
             var dims = new int[dims_size];
 

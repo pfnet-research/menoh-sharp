@@ -69,7 +69,7 @@ namespace MenohSharp
         public extern static int menoh_model_get_variable_dtype(IntPtr model, string variable_name, ref int dst_dtype);
 
         [DllImport("menoh", CallingConvention = CallingConvention.StdCall)]
-        public extern static int menoh_model_get_variable_dims_size(IntPtr model, string variable_name, ref DType dst_size);
+        public extern static int menoh_model_get_variable_dims_size(IntPtr model, string variable_name, ref int dst_size);
 
         [DllImport("menoh", CallingConvention = CallingConvention.StdCall)]
         public extern static int menoh_model_get_variable_dims_at(IntPtr model, string variable_name, int index, ref int dst_size);
