@@ -55,37 +55,37 @@ namespace MenohSharpExample
             // internal memory buffers which are automatically allocated
             var model_builder = new MenohSharp.ModelBuilder(vpt);
 
-            fixed(float* p = image_data)
+            fixed (float* p = image_data)
             {
                 model_builder.AttachExternalBuffer(conv1_1_in_name, (IntPtr)p);
-            }
 
-            // Build model
-            var model = model_builder.BuildModel(model_data, "mkldnn");
-            model_data.Dispose(); // you can delete model_data explicitly after model building
+                // Build model
+                var model = model_builder.BuildModel(model_data, "mkldnn");
+                model_data.Dispose(); // you can delete model_data explicitly after model building
 
-            // Get buffer pointer of output
-            float* fc6_output_buff = (float*)(model.GetVariable(fc6_out_name).BufferHandle);
-            float* softmax_output_buff = (float*)(model.GetVariable(softmax_out_name).BufferHandle);
+                // Get buffer pointer of output
+                float* fc6_output_buff = (float*)(model.GetVariable(fc6_out_name).BufferHandle);
+                float* softmax_output_buff = (float*)(model.GetVariable(softmax_out_name).BufferHandle);
 
-            // Run inference
-            model.Run();
+                // Run inference
+                model.Run();
 
-            // Get output
-            for (int i = 0; i < 10; ++i)
-            {
-                Console.Write((*(fc6_output_buff + i)).ToString() + " ");
-            }
-            Console.WriteLine();
+                // Get output
+                for (int i = 0; i < 10; ++i)
+                {
+                    Console.Write((*(fc6_output_buff + i)).ToString() + " ");
+                }
+                Console.WriteLine();
 
-            var categories = LoadCategoryList(synset_words_path);
-            var top_k = 5;
-            var top_k_indices = ExtractTopKIndexList(
-              softmax_output_buff, softmax_output_buff + softmax_dims[1], top_k);
-            Console.WriteLine("top " + top_k + "  categories are");
-            foreach (var ki in top_k_indices)
-            {
-                Console.WriteLine(ki + " " + (*(softmax_output_buff + ki)).ToString() + "  categories are" + categories[ki]);
+                var categories = LoadCategoryList(synset_words_path);
+                var top_k = 5;
+                var top_k_indices = ExtractTopKIndexList(
+                  softmax_output_buff, softmax_output_buff + softmax_dims[1], top_k);
+                Console.WriteLine("top " + top_k + "  categories are");
+                foreach (var ki in top_k_indices)
+                {
+                    Console.WriteLine(ki + " " + (*(softmax_output_buff + ki)).ToString() + "  categories are" + categories[ki]);
+                }
             }
         }
 
