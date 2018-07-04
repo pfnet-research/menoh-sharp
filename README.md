@@ -10,7 +10,7 @@ This project is for 64 bit only.
 
 - [Menoh](https://github.com/pfnet-research/menoh/)
 
-- [Prebuild Binaries(Windows)](https://github.com/pfnet-research/menoh-sharp/releases/download/untagged-fc32366daa771aa93ad1/Prebuild_Win.zip)
+- [Prebuild Binaries(Windows)](https://github.com/pfnet-research/menoh-sharp/releases/download/v1.0.1/Prebuild_Win.zip)
 
 To execute an example, please put binaries in ./bin/
 
