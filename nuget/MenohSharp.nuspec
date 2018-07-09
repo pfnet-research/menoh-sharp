@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>MenohSharp</id>
-        <version>1.0.1.0</version>
+        <version>1.0.2.0</version>
         <title>MenohSharp</title>
         <authors>Preferred Networks</authors>
         <licenseUrl>https://github.com/pfnet-research/menoh-sharp/blob/master/LICENSE</licenseUrl>
@@ -26,6 +26,7 @@ If it runs on MacOSX, you need install Menoh form source code.
         <file src="menoh.dll" target="runtimes\win-x64\native" />
         <file src="mkldnn.dll" target="runtimes\win-x64\native" />
         <file src="mklml.dll" target="runtimes\win-x64\native" />
+        <file src="libiomp5md.dll" target="runtimes\win-x64\native" />
 
     </files>
 </package>
