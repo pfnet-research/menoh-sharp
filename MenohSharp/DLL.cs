@@ -16,6 +16,9 @@ namespace MenohSharp
         public extern static int menoh_make_model_data_from_onnx(string onnx_filename, ref IntPtr dst_handle);
 
         [DllImport("menoh", CallingConvention = CallingConvention.StdCall)]
+        public extern static ErrorCode menoh_make_model_data_from_onnx_data_on_memory(IntPtr onnx_data, int size, ref IntPtr dst_handle);
+
+        [DllImport("menoh", CallingConvention = CallingConvention.StdCall)]
         public extern static void menoh_delete_model_data(IntPtr model_data);
 
         [DllImport("menoh", CallingConvention = CallingConvention.StdCall)]
@@ -27,12 +30,21 @@ namespace MenohSharp
         public extern static void menoh_delete_variable_profile_table_builder(IntPtr builder);
 
         [DllImport("menoh", CallingConvention = CallingConvention.StdCall)]
+        public extern static ErrorCode menoh_variable_profile_table_builder_add_input_profile(IntPtr builder, string name, DType dtype, int dims_size, int[] dims);
+
+        [DllImport("menoh", CallingConvention = CallingConvention.StdCall)]
+        [Obsolete("Please replace into menoh_variable_profile_table_builder_add_input_profile")]
         public extern static int menoh_variable_profile_table_builder_add_input_profile_dims_2(IntPtr builder, string name, DType dtype, int num, int size);
 
         [DllImport("menoh", CallingConvention = CallingConvention.StdCall)]
+        [Obsolete("Please replace into menoh_variable_profile_table_builder_add_input_profile")]
         public extern static int menoh_variable_profile_table_builder_add_input_profile_dims_4(IntPtr builder, string name, DType dtype, int num, int channel, int height, int width);
 
         [DllImport("menoh", CallingConvention = CallingConvention.StdCall)]
+        public extern static ErrorCode menoh_variable_profile_table_builder_add_output_name(IntPtr builder, string name);
+
+        [DllImport("menoh", CallingConvention = CallingConvention.StdCall)]
+        [Obsolete("Please replace into menoh_variable_profile_table_builder_add_output_name")]
         public extern static int menoh_variable_profile_table_builder_add_output_profile(IntPtr builder, string name, DType dtype);
 
         [DllImport("menoh", CallingConvention = CallingConvention.StdCall)]

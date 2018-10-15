@@ -37,14 +37,18 @@ namespace MenohSharpExample
             // Load ONNX model data
             var model_data = MenohSharp.ModelData.MakeModelDataFromONNX(onnx_model_path);
 
+            // Load ONNX model data from memory
+            //byte[] onnx_data = System.IO.File.ReadAllBytes(onnx_model_path);
+            //var model_data = MenohSharp.ModelData.MakeModelDataFromONNXDataOnMemory(onnx_data);
+
             // Define input profile (name, dtype, dims) and output profile (name, dtype)
             // dims of output is automatically calculated later
             var vpt_builder = new MenohSharp.VariableProfileTableBuilder();
             vpt_builder.AddInputProfile(conv1_1_in_name, MenohSharp.DType.Float,
                                     new[] { batch_size, channel_num, height, width });
 
-            vpt_builder.AddOutputProfile(fc6_out_name, MenohSharp.DType.Float);
-            vpt_builder.AddOutputProfile(softmax_out_name, MenohSharp.DType.Float);
+            vpt_builder.AddOutputName(fc6_out_name);
+            vpt_builder.AddOutputName(softmax_out_name);
 
             // Build variable_profile_table and get variable dims (if needed)
             var vpt = vpt_builder.BuildVariableProfileTable(model_data);

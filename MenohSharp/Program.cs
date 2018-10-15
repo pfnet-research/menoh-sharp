@@ -17,6 +17,7 @@ namespace MenohSharp
         std_error,
         unknown_error,
         invalid_filename,
+        unsupported_onnx_opset_version,
         onnx_parse_error,
         invalid_dtype,
         invalid_attribute_type,
@@ -30,11 +31,24 @@ namespace MenohSharp
         failed_to_configure_operator,
         backend_error,
         same_named_variable_already_exist,
+        unsupported_input_dims,
+        same_named_parameter_already_exist,
+        same_named_attribute_already_exist,
+        invalid_backend_config_error,
+        input_not_found_error,
+        output_not_found_error,
     };
 
     class Utils
     {
         public static void Check(int errorCode)
+        {
+            if (errorCode == 0) return;
+            var ec = (ErrorCode)errorCode;
+            throw new Exception(ec + " " + DLL.menoh_get_last_error_message());
+        }
+
+        public static void Check(ErrorCode errorCode)
         {
             if (errorCode == 0) return;
             var ec = (ErrorCode)errorCode;
@@ -94,6 +108,25 @@ namespace MenohSharp
             {
                 handle = handle,
             };
+        }
+
+        /// <summary>
+        /// Load ONNX file from memory and make model_data
+        /// </summary>
+        /// <param name="onnx_data"></param>
+        /// <returns></returns>
+        public static unsafe ModelData MakeModelDataFromONNXDataOnMemory(byte[] onnx_data)
+        {
+            fixed (byte* p = onnx_data)
+            {
+                IntPtr handle = IntPtr.Zero;
+                Utils.Check(DLL.menoh_make_model_data_from_onnx_data_on_memory((IntPtr)p, onnx_data.Length, ref handle));
+
+                return new ModelData()
+                {
+                    handle = handle,
+                };
+            }
         }
     }
 
@@ -202,18 +235,19 @@ namespace MenohSharp
         /// <param name="dims"></param>
         public void AddInputProfile(string name, DType dtype, int[] dims)
         {
-            if (dims.Length == 2)
-            {
-                Utils.Check(DLL.menoh_variable_profile_table_builder_add_input_profile_dims_2(handle, name, dtype, dims[0], dims[1]));
-            }
-            else if (dims.Length == 4)
-            {
-                Utils.Check(DLL.menoh_variable_profile_table_builder_add_input_profile_dims_4(handle, name, dtype, dims[0], dims[1], dims[2], dims[3]));
-            }
-            else
-            {
-                throw new Exception(string.Format("menoh invalid dims size error (2 or 4 is valid): dims size of {0}  is specified {1}", name, dims.Length));
-            }
+            Utils.Check(DLL.menoh_variable_profile_table_builder_add_input_profile(handle, name, dtype, dims.Length, dims));
+        }
+
+        /// <summary>
+        /// Add output name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <remarks>
+        /// dims amd dtype of output are calculated automatically when calling of menoh_build_variable_profile_table.
+        /// </remarks>
+        public void AddOutputName(string name)
+        {
+            Utils.Check(DLL.menoh_variable_profile_table_builder_add_output_name(handle, name));
         }
 
         /// <summary>
@@ -221,6 +255,7 @@ namespace MenohSharp
         /// </summary>
         /// <param name="name"></param>
         /// <param name="dtype"></param>
+        [Obsolete("please use AddOutputName() instead. ")]
         public void AddOutputProfile(string name, DType dtype)
         {
             Utils.Check(DLL.menoh_variable_profile_table_builder_add_output_profile(handle, name, dtype));
