@@ -10,7 +10,9 @@ This project is for 64 bit only.
 
 - [Menoh](https://github.com/pfnet-research/menoh/)
 
-- [Prebuild Binaries(Windows)](https://github.com/pfnet-research/menoh-sharp/releases/download/v1.0.1/Prebuild_Win.zip)
+- [Prebuild Menoh Binaries(Windows)](https://github.com/pfnet-research/menoh/releases/download/v1.1.0/menoh_prebuild_win_v1.1.0.zip)
+
+- [Prebuild MKL-DNN Binaries(Windows)](https://github.com/pfnet-research/menoh/releases/download/v1.1.0/mkl-dnn-0.16-win64.zip)
 
 To execute an example, please put binaries in ./bin/
 
